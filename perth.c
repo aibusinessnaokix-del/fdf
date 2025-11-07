@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parth.c                                            :+:      :+:    :+:   */
+/*   perth.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 06:59:17 by naoki             #+#    #+#             */
-/*   Updated: 2025/11/06 08:18:17 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:41:24 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	**maping(char *file, t_map size)
 	int		y;
 
 	map = init_map(size);
+	if (!map)
+		return (NULL);
 	fd = open(file, O_RDONLY);
 	y = 0;
 	while (y < size.y)
@@ -84,6 +86,31 @@ int	**maping(char *file, t_map size)
 		y++;
 	}
 	return (map);
+}
+
+t_map	highest(int **map, t_map size)
+{
+	int	x;
+	int	y;
+	int	high;
+
+	x = 0;
+	y = 0;
+	high = map[0][0];
+	while (y < size.y)
+	{
+		x = 0;
+		while (x < size.x)
+		{
+			if (high < map[x][y])
+				high = map[x][y];
+			x++;
+		}
+
+		y++;
+	}
+	size.z = high;
+	return (size);
 }
 
 //#include <stdio.h>

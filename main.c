@@ -6,7 +6,7 @@
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 23:45:02 by natakaha          #+#    #+#             */
-/*   Updated: 2025/11/06 11:35:59 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:42:51 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ int	main(int argc, char **argv)
 	img = img_data(img);
 	size = mapsize(argv[1]);
 	map = maping(argv[1], size);
+	if (!map)
+		return (1);
+	size = highest(map, size);
 	display = make_display(size, map);
 	connect_dots(img, display, size);
 	mlx_put_image_to_window(img.mlx, img.win, img.ptr, 0, 0);
-	mlx_key_hook(img.win, *handle_key_press, img.mlx);
-	mlx_hook(img.win, 17, 0, *close_win, img.mlx);
+	mlx_key_hook(img.win, handle_key_press, img.mlx);
+	mlx_hook(img.win, 17, 0, close_win, img.mlx);
 	mlx_loop(img.mlx);
 }

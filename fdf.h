@@ -6,7 +6,7 @@
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 06:46:25 by naoki             #+#    #+#             */
-/*   Updated: 2025/11/06 11:39:40 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:30:05 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_map
 {
 	int	x;
 	int	y;
+	int	z;
 }	t_map;
 
 typedef struct s_info
@@ -56,6 +57,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 t_map	mapsize(char *file);
 void	free_map(int **map, int x);
 int		**maping(char *file, t_map size);
+t_map	highest(int **map, t_map size);
 
 /*process.c*/
 t_info	info(void);

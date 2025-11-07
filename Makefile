@@ -16,8 +16,8 @@ LIBFLAGS = -Imlx -Lminilibx_linux -lmlx_Linux -lX11 -lXext -lm
 NAME =  fdf
 SRCS = get_next_line.c\
 	   get_next_line_utils.c\
-	   parth.c\
-	   util_parth.c\
+	   perth.c\
+	   util_perth.c\
 	   main.c\
 	   process.c\
 	   make_display.c\

@@ -6,7 +6,7 @@
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 03:47:28 by natakaha          #+#    #+#             */
-/*   Updated: 2025/11/06 11:12:01 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/07 20:39:18 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ static t_map	translate(int x, int y, int z)
 
 	pixel.x = (x - y) * cos(0.523599) * 20 + 400;
 	pixel.y = ((x + y) * sin(0.523599) - z) * 20 + 300;
+	pixel.z = z;
 	return (pixel);
 }
+
+#include <stdio.h>
 
 t_map	**make_display(t_map size, int **map)
 {
