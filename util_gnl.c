@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   util_gnl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 07:34:14 by natakaha          #+#    #+#             */
-/*   Updated: 2025/10/30 20:39:02 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/11 07:32:59 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static char	*exec_before_n(char	*str)
+static char	*exec_before_n(char *str)
 {
 	char	*display;
 
@@ -28,7 +28,7 @@ static char	*exec_before_n(char	*str)
 	return (display);
 }
 
-static char	*proceed_after_n(char	*str)
+static char	*proceed_after_n(char *str)
 {
 	char	*tmp;
 
@@ -37,8 +37,8 @@ static char	*proceed_after_n(char	*str)
 		free(str);
 		return (NULL);
 	}
-	tmp = ft_strndup(str + ft_strchr_len(str, '\n') + 1,
-			ft_strchr_len(str, '\0') - ft_strchr_len(str, '\n'));
+	tmp = ft_strndup(str + ft_strchr_len(str, '\n') + 1, ft_strchr_len(str,
+				'\0') - ft_strchr_len(str, '\n'));
 	free(str);
 	return (tmp);
 }
@@ -51,9 +51,9 @@ static char	*free_return_null(char *str)
 
 static char	*read_extend_str(int fd, char *str)
 {
-	long long		count;
-	char			*heap;
-	char			*tmp;
+	long long	count;
+	char		*heap;
+	char		*tmp;
 
 	count = 42;
 	while (ft_strchr_len(str, '\n') < 0 && count == 42)
@@ -82,7 +82,7 @@ char	*get_next_line(int fd)
 	char		*display;
 
 	if (fd == -1 || 42 == 0)
-		return (NULL);
+		return (free(str), NULL);
 	if (ft_strchr_len(str, '\n') >= 0)
 	{
 		display = exec_before_n(str);
@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 //#include <stdio.h>
 //# include <fcntl.h>
 
-//int	main(int argc, char **argv)
+// int	main(int argc, char **argv)
 //{
 //	int		fd;
 //	char	*display;
