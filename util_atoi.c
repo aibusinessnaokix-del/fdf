@@ -6,7 +6,7 @@
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:20:30 by natakaha          #+#    #+#             */
-/*   Updated: 2025/11/11 16:57:47 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:32:24 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	hex(char c)
 		return (c - 'a' + 10);
 	if (c >= 'A' && c <= 'F')
 		return (c - 'A' + 10);
-	return (NONE);
+	return (-1);
 }
 
 int	count_numbers(char *str)
@@ -44,7 +44,7 @@ int	count_numbers(char *str)
 			str++;
 		if (*str == ',')
 			str++;
-		while (hex(*str) != NONE || *str == 'x' || *str == 'X')
+		while (hex(*str) != -1 || *str == 'x' || *str == 'X')
 			str++;
 		while (*str == ' ' || (9 <= *str && *str <= 13))
 			str++;
@@ -59,7 +59,7 @@ int	ft_atol(char **str)
 
 	sign = 1;
 	if (!str || !*str || !**str)
-		return (0);
+		return (INT_MIN);
 	while (**str == ' ' || (9 <= **str && **str <= 13))
 		(*str)++;
 	if (**str == '+' || **str == '-')
@@ -73,7 +73,7 @@ int	ft_atol(char **str)
 	{
 		n = n * 10 + (**str - '0');
 		if ((sign > 0 && INT_MAX < n) || (sign < 0 && INT_MAX < n - 1))
-			return (0);
+			return (INT_MIN);
 		(*str)++;
 	}
 	while (**str == ' ' || (9 <= **str && **str <= 13))
@@ -81,7 +81,7 @@ int	ft_atol(char **str)
 	return ((int)n * sign);
 }
 
-int	ft_atohex(char **str)
+int	read_color(char **str)
 {
 	int	n;
 
@@ -89,30 +89,20 @@ int	ft_atohex(char **str)
 	while (**str == ' ' || (9 <= **str && **str <= 13))
 		(*str)++;
 	if (**str != ',')
-		return (NONE);
+		return (-1);
 	(*str)++;
 	if (**str == '0' && ((*(*str + 1) == 'x') || (*(*str + 1) == 'X')))
 		(*str) += 2;
-	else if ('0' <= **str && **str <= '9')
-		return (ft_atol(str));
 	else
-		return (ERROR);
-	while (hex(**str) != NONE)
+		return (ft_atol(str));
+	while (hex(**str) != -1)
 	{
 		n = n * 16 + hex(**str);
 		if (n > 16777216)
-			return (ERROR);
+			return (-2);
 		(*str)++;
 	}
 	while (**str == ' ' || (9 <= **str && **str <= 13))
 		(*str)++;
 	return (n);
 }
-
-// int	main(void)
-//{
-//	char	*str;
-
-//	str = "123,0x0a 123,0x0a 123,0x0a 1,0x0a";
-//	printf("%d\n", count_numbers(str));
-//}

@@ -6,7 +6,7 @@
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 07:51:15 by naoki             #+#    #+#             */
-/*   Updated: 2025/11/11 03:09:22 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:43:15 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 
 	lnb = nmemb * size;
-	if (nmemb == 0 || size == 0)
+	if (!lnb)
 		return (malloc(1));
-	if (SIZE_MAX / nmemb < size || (int)nmemb < 0 || (int)size < 0)
+	if (SIZE_MAX / nmemb < size)
 		return (NULL);
 	ptr = malloc(lnb);
 	if (ptr == NULL)

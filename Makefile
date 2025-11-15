@@ -28,6 +28,8 @@ SRCS = main.c\
 	   util_gnl.c\
 	   util_maxmin.c\
 
+MINILIBX = minilibx-linux/libmlx_Linux.a
+
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all clean fclean re
@@ -36,7 +38,10 @@ all: $(NAME)
 
 bonus: $(NAME)
 
-$(NAME) : $(OBJS)
+$(MINILIBX) :
+	@$(MAKE) -C minilibx-linux
+
+$(NAME) : $(OBJS) $(MINILIBX)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFLAGS) -o $(NAME)
 
 %.o:%.c
@@ -44,6 +49,7 @@ $(NAME) : $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
+	@$(MAKE) -C minilibx-linux clean
 
 fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)

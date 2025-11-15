@@ -6,7 +6,7 @@
 /*   By: natakaha <natakaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 03:42:35 by natakaha          #+#    #+#             */
-/*   Updated: 2025/11/11 16:33:35 by natakaha         ###   ########.fr       */
+/*   Updated: 2025/11/11 02:08:53 by natakaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ t_info	get_ptr(t_info img)
 	mlx_ptr = mlx_init();
 	if (!mlx_ptr)
 		return (img);
-	win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "FDF");
+	win_ptr = mlx_new_window(mlx_ptr, 1000, 800, "FDF");
 	if (!win_ptr)
 		return (img);
-	img_ptr = mlx_new_image(mlx_ptr, WIDTH, HEIGHT);
+	img_ptr = mlx_new_image(mlx_ptr, 1000, 800);
 	img.mlx = mlx_ptr;
 	img.win = win_ptr;
 	img.ptr = img_ptr;
